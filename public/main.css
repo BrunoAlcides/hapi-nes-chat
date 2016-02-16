@@ -1,0 +1,62 @@
+* {
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
+}
+
+body {
+  font: 13px Helvetica, Arial;
+}
+
+.wrapper{
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.wrapper div:first-child{
+  overflow-y: auto;
+  flex-basis: calc(100% - 41px);
+}
+
+.chat{
+  list-style-type: none;
+  margin: 0px;
+  padding: 0px;
+}
+
+.chat li{
+  padding: 5px 10px;
+}
+
+.chat li:nth-child(odd){
+  background-color: #EEE;
+}
+
+.send {
+  background-color: #EDEDED;
+  padding: 3px;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  flex-basis: 41px;
+}
+
+.send input{
+  border: none;
+  padding: 10px;
+  width: 90%;
+}
+
+.send button{
+  background-color: #3F51B5;
+  color: #FFF;
+  border: none;
+  text-align: center;
+  font-weight: bold;
+  padding: 10px;
+  width: 9%;
+  outline: none;
+}

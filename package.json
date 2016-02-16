@@ -1,0 +1,31 @@
+{
+  "author": "Bruno Alcides <brunolourencoa@gmail.com>",
+  "description": "nes_chat",
+  "private": true,
+  "version": "0.0.1",
+  "dependencies": {
+    "hapi": "^13.0.0",
+    "inert": "3.1.0",
+    "nes": "^3.0.0"
+  },
+  "scripts": {
+    "start": "node index.js"
+  },
+  "name": "nes-chat",
+  "main": "index.js",
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/BrunoAlcides/nes-chat.git"
+  },
+  "keywords": [
+    "hapi",
+    "nes",
+    "chat"
+  ],
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/BrunoAlcides/nes-chat/issues"
+  },
+  "homepage": "https://github.com/BrunoAlcides/nes-chat#readme"
+}
