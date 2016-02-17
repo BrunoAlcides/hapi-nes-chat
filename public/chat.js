@@ -8,26 +8,28 @@
   });
 
   client.onUpdate = update => {
-    $('.chat').innerHTML += `<li>${update}`;
+    $('.chat').innerHTML += `<li>${update.replace(new RegExp(`${me} `), 'You ')}`;
     $('.chat').scrollIntoView(false);
   };
 
   client.subscribe('/chat', message => {
-    $('.chat').innerHTML += `<li>${message}`;
+    $('.chat').innerHTML += `<li>${message.replace(new RegExp(`${me}:`), 'You:')}`;
     $('.chat').scrollIntoView(false);
   }, err => {
     err && console.log(err);
   });
 
   $('#btSend').onclick = () => {
-    $('#inMessage').value && client.message($('#inMessage').value);
+    $('#inMessage').value && client.message(`${me}: ${$('#inMessage').value}`);
     $('#inMessage').value = '';
     $('#inMessage').focus();
   };
 
   $('#inMessage').onkeydown = e => {
     e.keyCode == 13 && $('#btSend').click();
-  }
+  };
+
+  $('#inMessage').focus();
 
   function $(elm){
     return document.querySelector(elm);

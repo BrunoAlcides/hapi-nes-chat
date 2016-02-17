@@ -3,7 +3,10 @@
 const Hapi   = require('hapi'),
       Inert  = require('inert'),
       Nes    = require('nes'),
+      Fs     = require('fs'),
       server = new Hapi.Server();
+
+let name;
 
 server.connection({
   port: process.argv[2] || 3000
@@ -13,7 +16,11 @@ server.register([Inert, {
   register: Nes,
   options: {
     onConnection: socket => {
-      server.broadcast('Hello!!!');
+      socket.name = name;
+      server.broadcast(`Hello, ${name}`);
+    },
+    onDisconnection: socket => {
+      server.broadcast(`Bye, ${socket.name}`);
     },
     onMessage: (socket, message, next) => {
       server.publish('/chat', message);
@@ -29,9 +36,18 @@ server.register([Inert, {
   server.route([
   {
     method: 'GET',
-    path: '/chat',
+    path: '/',
     handler: {
-      file: 'index.html'
+      file: './login.html'
+    }
+  },
+  {
+    method: 'POST',
+    path: '/chat',
+    handler: (request, reply) => {
+      name = request.payload.name.split(' ').map(name => name[0].toUpperCase() + name.slice(1).toLowerCase()).join(" ").trim().replace(/\'/g, '\\\'');
+      let file = Fs.readFileSync('./index.html', 'utf-8').replace('{{me}}', name);
+      reply(file);
     }
   },
   {
