@@ -17,21 +17,31 @@ server.register([Inert, {
   options: {
     onConnection: socket => {
       socket.name = name;
-      server.broadcast(`Hello, ${name}`);
+      server.publish('/connect', socket.name);
     },
     onDisconnection: socket => {
-      server.broadcast(`Bye, ${socket.name}`);
+      server.publish('/disconnect', socket.name);
     },
-    onMessage: (socket, message, next) => {
-      server.publish('/chat', message);
+    onMessage: (senderSocket, msg, next) => {
+      if (msg.to == 'general') {
+        server.publish('/chat', msg);
+      }
+      else {
+        let receiverSocket;
+
+        server.eachSocket(socket => {
+          if (socket.name.toLowerCase() == msg.to) receiverSocket = socket;
+        });
+
+        senderSocket.publish('/chat', msg);
+        receiverSocket.publish('/chat', msg);
+      }
     }
   }
 }],(err) => {
   if(err){
     throw err;
   }
-
-  server.subscription('/chat');
 
   server.route([
   {
@@ -45,7 +55,7 @@ server.register([Inert, {
     method: 'POST',
     path: '/chat',
     handler: (request, reply) => {
-      name = request.payload.name.split(' ').map(name => name[0].toUpperCase() + name.slice(1).toLowerCase()).join(" ").trim().replace(/\'/g, '\\\'');
+      name = request.payload.name.split(' ').map(name => name[0].toUpperCase() + name.slice(1).toLowerCase()).join(" ").replace(/\'/g, '\\\'');
       let file = Fs.readFileSync('./index.html', 'utf-8').replace('{{me}}', name);
       reply(file);
     }
@@ -60,7 +70,24 @@ server.register([Inert, {
         index: true
       }
     }
-  }]);
+  },
+  {
+    method: 'GET',
+    path: '/names',
+    handler: (request, reply) => {
+      let names = [];
+
+      server.eachSocket(socket => {
+        names = names.concat(socket.name.toLowerCase());
+      })
+
+      reply(names);
+    }
+  }])
+
+  server.subscription('/chat');
+  server.subscription('/connect');
+  server.subscription('/disconnect');
 
   server.start(() => console.log('Server running at:', server.info.uri));
-});
+})

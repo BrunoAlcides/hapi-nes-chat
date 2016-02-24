@@ -8,31 +8,54 @@ body {
   font: 13px Helvetica, Arial;
 }
 
-.wrapper{
+.wrapper {
   width: 100%;
   height: 100%;
   display: flex;
+  justify-content: flex-start;
+}
+
+.left{
+  background-color: #343B80;
+  display: flex;
+  flex-grow: 1;
+}
+
+.rooms{
+  list-style-type: none;
+  width: 100%;
+}
+
+.rooms li{
+  padding: 5px 10px;
+  text-align: center;
+  font-size: 22px;
+  color: #FFF;
+}
+
+.right {
+  display: flex;
+  flex-grow: 5;
   flex-direction: column;
   justify-content: space-between;
 }
 
-.wrapper div:first-child{
+.chats{
   overflow-y: auto;
-  flex-basis: calc(100% - 41px);
+  height: calc(100% - 41px);
 }
 
-.chat{
+.chat {
   list-style-type: none;
-  margin: 0px;
-  padding: 0px;
+  display: none;
 }
 
-.chat li{
+.chat li {
   padding: 5px 10px;
 }
 
-.chat li:nth-child(odd){
-  background-color: #EEE;
+.chat li:nth-child(odd) {
+  background-color: #DDE3EB;
 }
 
 .send {
@@ -44,19 +67,28 @@ body {
   flex-basis: 41px;
 }
 
-.send input{
+.send input {
   border: none;
   padding: 10px;
   width: 90%;
 }
 
-.send button{
+.send button {
   background-color: #3F51B5;
   color: #FFF;
-  border: none;
+  border: thin solid #3F51B5;
+  border-radius: 2px;
   text-align: center;
   font-weight: bold;
   padding: 10px;
   width: 9%;
   outline: none;
+}
+
+.active {
+  display: block !important;
+}
+
+.room-active {
+  background-color: #292F66;
 }
