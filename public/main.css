@@ -31,6 +31,9 @@ body {
   text-align: center;
   font-size: 22px;
   color: #FFF;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .right {
@@ -59,7 +62,7 @@ body {
 }
 
 .send {
-  background-color: #EDEDED;
+  background-color: #B9B9B9;
   padding: 3px;
   width: 100%;
   display: flex;
@@ -85,10 +88,63 @@ body {
   outline: none;
 }
 
-.active {
+.chat-active {
   display: block !important;
 }
 
 .room-active {
   background-color: #292F66;
 }
+
+.unread-message {
+  background-color: #E91E63;
+  padding: 1px 6px;
+  border-radius: 16px;
+}
+
+.unread-message span {
+  font-size: 18px;
+}
+
+@media screen and (min-width: 480px) and (max-width: 768px){
+
+  .left {
+    flex-grow: 1;
+  }
+
+  .right {
+    flex-grow: 3;
+  }
+
+  .send input {
+    width: 82%;
+  }
+
+  .send button {
+    width: 16%;
+  }
+
+}
+
+@media screen and (max-width: 480px){
+
+  .left {
+    flex-grow: 1;
+  }
+
+  .right {
+    flex-grow: 1;
+  }
+
+  .send input {
+    width: 77%;
+  }
+
+  .send button {
+    width: 22%;
+  }
+}
+
+.linha1{width: 25px;transform: rotateZ(142deg);transform-origin: 33% 69%;}
+.linha2{transform: rotateZ(180deg);}
+.linha3{width: 25px;transform: rotateZ(220deg);transform-origin: 33% 38%;}

@@ -16,7 +16,7 @@
   "devDependencies": {},
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/BrunoAlcides/nes-chat.git"
+    "url": "git+https://github.com/BrunoAlcides/hapi-nes-chat.git"
   },
   "keywords": [
     "hapi",
@@ -25,7 +25,7 @@
   ],
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/BrunoAlcides/nes-chat/issues"
+    "url": "https://github.com/BrunoAlcides/hapi-nes-chat/issues"
   },
-  "homepage": "https://github.com/BrunoAlcides/nes-chat#readme"
+  "homepage": "https://github.com/BrunoAlcides/hapi-nes-chat#readme"
 }
