@@ -15,18 +15,18 @@ body {
   justify-content: flex-start;
 }
 
-.left{
+.left {
   background-color: #343B80;
   display: flex;
   flex-grow: 1;
 }
 
-.rooms{
+.rooms {
   list-style-type: none;
   width: 100%;
 }
 
-.rooms li{
+.rooms li {
   padding: 5px 10px;
   text-align: center;
   font-size: 22px;
@@ -43,7 +43,7 @@ body {
   justify-content: space-between;
 }
 
-.chats{
+.chats {
   overflow-y: auto;
   height: calc(100% - 41px);
 }
@@ -144,7 +144,3 @@ body {
     width: 22%;
   }
 }
-
-.linha1{width: 25px;transform: rotateZ(142deg);transform-origin: 33% 69%;}
-.linha2{transform: rotateZ(180deg);}
-.linha3{width: 25px;transform: rotateZ(220deg);transform-origin: 33% 38%;}
