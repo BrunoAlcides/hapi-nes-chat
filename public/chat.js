@@ -1,7 +1,7 @@
 'use strict';
 
 (function(){
-  const client = new nes.Client('ws://localhost:3000/chat'), options = {delay: 1000,maxDelay: 500,retries: 10};
+  const client = new nes.Client(`ws://${server}/chat`), options = {delay: 1000,maxDelay: 500,retries: 10};
 
   let users = [];
 

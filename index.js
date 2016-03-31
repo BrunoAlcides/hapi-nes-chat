@@ -56,7 +56,7 @@ server.register([Inert, {
     path: '/chat',
     handler: (request, reply) => {
       name = request.payload.name.split(' ').map(name => name[0].toUpperCase() + name.slice(1).toLowerCase()).join(" ").replace(/\'/g, '\\\'');
-      let file = Fs.readFileSync('./index.html', 'utf-8').replace('{{me}}', name);
+      let file = Fs.readFileSync('./index.html', 'utf-8').replace('{{me}}', name).replace('{{server}}', `${server.info.host}:${server.info.port}`);
       reply(file);
     }
   },
